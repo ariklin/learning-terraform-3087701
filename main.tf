@@ -61,7 +61,7 @@ resource "aws_security_group" "blog" {
   tags = {
     Terraform = "true"
   }
-  vpc_id = module.vpc.
+  vpc_id = module.vpc.public_subnets[0]
 }
 
 resource "aws_security_group_rule" "blog_http_in" {
