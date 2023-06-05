@@ -5,3 +5,8 @@
 # output "instance_arn" {
 #   value = aws_instance.blog.arn
 # }
+
+
+output "environment_uri" {
+   value = module.blog.alb.lb_dns_name
+ }
