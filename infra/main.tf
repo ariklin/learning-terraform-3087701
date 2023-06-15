@@ -73,7 +73,7 @@ module "explore-california-vpc" {
 module "explore-california-cluster" {
   source = "terraform-aws-modules/eks/aws"
   version = "19.15.3"
-  name = "explore-california"
+  cluster_name =   "explore-california"
   cluster_version = "1.20"
   subnets_subnet_ids = module.explore-california-vpc.public_subnets
   vpc_id          = module.explore-california-vpc.vpc_id
