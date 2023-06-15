@@ -2,14 +2,10 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
+      region  = "us-west-2"
     }
   }
 }
-
-provider "aws" {
-  region  = "us-west-2"
-}
-
 
 data "aws_eks_cluster" "cluster" {
   name = module.explore-california-cluster.cluster_id
@@ -77,6 +73,7 @@ module "explore-california-vpc" {
 
 module "explore-california-cluster" {
   source = "terraform-aws-modules/aws/eks"
+  name = "explore-california"
   cluster_version = "1.20"
   subnets          = module.explore-california-vpc.public_subnets
   vpc_id          = module.explore-california-vpc.vpc_id
