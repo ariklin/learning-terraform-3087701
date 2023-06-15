@@ -71,11 +71,10 @@ module "explore-california-vpc" {
 }
 
 module "explore-california-cluster" {
-  source = "terraform-aws-modules/eks/aws"
-  version = "19.15.3"
-  cluster_name =   "explore-california"
+  source = "terraform-aws-modules/eks/aws//modules/worker_group"
+  cluster_name    = "explore-california-cluster"
   cluster_version = "1.20"
-  subnet_ids = module.explore-california-vpc.public_subnets
+  subnets          = module.explore-california-vpc.public_subnets
   vpc_id          = module.explore-california-vpc.vpc_id
   worker_groups = [
     {
