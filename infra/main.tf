@@ -1,3 +1,16 @@
+terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+    }
+  }
+}
+
+provider "aws" {
+  region  = "us-west-2"
+}
+
+
 data "aws_eks_cluster" "cluster" {
   name = module.explore-california-cluster.cluster_id
 }
@@ -63,7 +76,7 @@ module "explore-california-vpc" {
 }
 
 module "explore-california-cluster" {
-  source          = "./module"
+  source          = "./."
   cluster_name    = "explore-california-cluster"
   cluster_version = "1.20"
   subnets          = module.explore-california-vpc.public_subnets
@@ -95,4 +108,3 @@ resource "aws_ecr_repository" "explore-california" {
     scan_on_push = true
   }
 }
-
