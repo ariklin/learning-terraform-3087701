@@ -1,16 +1,3 @@
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-    }
-  }
-}
-
-provider "aws" {
-  region  = "us-west-2"
-}
-
-
 data "aws_eks_cluster" "cluster" {
   name = module.explore-california-cluster.cluster_id
 }
