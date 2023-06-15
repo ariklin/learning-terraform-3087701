@@ -108,3 +108,4 @@ resource "aws_ecr_repository" "explore-california" {
     scan_on_push = true
   }
 }
+
