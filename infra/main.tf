@@ -66,7 +66,7 @@ module "explore-california-vpc" {
 
 module "explore-california-cluster" {
   // The source argument should be set to the path of the module directory in your Terraform Cloud workspace
-  source          = "./infra"
+  source          = "."
   cluster_name    = "explore-california-cluster"
   cluster_version = "1.20"
   subnets          = module.explore-california-vpc.public_subnets
