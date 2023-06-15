@@ -37,6 +37,7 @@ resource "aws_security_group" "enable_ssh" {
 
 module "explore-california-vpc" {
   // The source argument will be set in your Terraform Cloud workspace
+  source          = "."
   name = "explore-california"
   cidr = "10.0.0.0/16"
 
