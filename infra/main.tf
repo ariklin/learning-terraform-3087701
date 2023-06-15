@@ -1,5 +1,15 @@
 terraform {
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+    }
+  }
 }
+
+provider "aws" {
+  region  = "us-west-2"
+}
+
 
 data "aws_eks_cluster" "cluster" {
   name = module.explore-california-cluster.cluster_id
@@ -66,7 +76,7 @@ module "explore-california-vpc" {
 }
 
 module "explore-california-cluster" {
-  source          = "./."
+  source          = "./module"
   cluster_name    = "explore-california-cluster"
   cluster_version = "1.20"
   subnets          = module.explore-california-vpc.public_subnets
@@ -80,8 +90,6 @@ module "explore-california-cluster" {
       kubelet_extra_args = "--node-labels=node.kubernetes.io/lifecycle=spot"
       suspended_processes = ["AZRebalance"]
     },
-  ]
-}
     {
       instance_type = "t3.large"
       asg_max_size  = 5
