@@ -66,7 +66,6 @@ module "explore-california-vpc" {
 }
 
 module "explore-california-cluster" {
-  // The source argument should be set to the path of the module directory in your Terraform Cloud workspace
   source          = "./."
   cluster_name    = "explore-california-cluster"
   cluster_version = "1.20"
@@ -81,6 +80,8 @@ module "explore-california-cluster" {
       kubelet_extra_args = "--node-labels=node.kubernetes.io/lifecycle=spot"
       suspended_processes = ["AZRebalance"]
     },
+  ]
+}
     {
       instance_type = "t3.large"
       asg_max_size  = 5
